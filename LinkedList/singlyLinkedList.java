@@ -163,7 +163,6 @@ class singlyLinkedList {
             }
         }
     }
-
     // Delete function
     void delete(int loc) {
 
@@ -193,6 +192,22 @@ class singlyLinkedList {
 
         }
     }
+    //Get middle number in a linked list
+    void printMiddle()
+	{
+		Node slow_ptr = root;
+		Node fast_ptr = root;
+		if (root != null)
+		{
+			while (fast_ptr != null && fast_ptr.next != null)
+			{
+				fast_ptr = fast_ptr.next.next;
+				slow_ptr = slow_ptr.next;
+			}
+			System.out.println("The middle element is [" +
+								slow_ptr.data + "] \n");
+		}
+	}
 
     public static void main(String[] args) {
         singlyLinkedList list1 = new singlyLinkedList();
@@ -204,8 +219,8 @@ class singlyLinkedList {
         list1.append(50);
         list1.display();
 
-        list1.addatafter(5);
-        list1.display();
+        // list1.addatafter(5);
+        // list1.display();
 
         // REVERSE FUNCTION
         // list1.reverseData();
@@ -218,12 +233,13 @@ class singlyLinkedList {
         // list1.display();
 
         // Delete Implementation
-        list1.delete(6);
-        list1.display();
+        // list1.delete(6);
+        // list1.display();
 
         // Length Implementation
         // int len = list1.length();
         // System.out.println("The length of nodes is " + len);
+        list1.printMiddle();
 
     }
 

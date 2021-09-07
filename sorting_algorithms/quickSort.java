@@ -18,15 +18,12 @@ class quickSort {
         // It is set to -1 initially so that it starts comparison from 0
         int i = (low - 1);
         int pivot = arr[high];
-
-        // it runs till high -1 cause arr[high] id pivot
+        // it runs till high -1 cause arr[high] is pivot
         for (int j = low; j <= high - 1; j++) {
             if (arr[j] < pivot) {
                 i++;
                 swap(arr, i, j);
-
             }
-
         }
         // i+1 is used to point on the index
         swap(arr, i + 1, high);
@@ -41,7 +38,6 @@ class quickSort {
             // printarray( arr,arr.length);
             quick_sort(arr, partition_index + 1, high);
         }
-
     }
 
     public static void main(String[] args) {

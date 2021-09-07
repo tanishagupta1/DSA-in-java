@@ -25,7 +25,8 @@
     "git.ignoreLimitWarning": true,
     "workbench.colorTheme": "Monokai",
     "java.project.sourcePaths": [
+        "recursion",
         "LinkedList",
-        "recursion"
+        "sorting_algorithms"
     ]
 }
