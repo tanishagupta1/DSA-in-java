@@ -39,7 +39,8 @@ public class getmazepaths {
         int sc = scn.nextInt();
         int dr = scn.nextInt();
         int dc = scn.nextInt();
-        System.out.println(getmazepath(sr, sc,dr,dc));
+        ArrayList<String> ans=getmazepath(sr, sc, dr, dc);
+        System.out.println(ans);
         scn.close();
     }
 }
