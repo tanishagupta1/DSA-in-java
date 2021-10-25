@@ -13,7 +13,7 @@ public class getmazePathswithjumps {
         for(int step=1;step<=dc-sc;step++){
         getmazepathwithjumps(sr, sc+step, dr, dc, sf+"h"+step,count++);
         }
-        //Horizontal move
+        //Vertical move
         for(int step=1;step<=dr-sr;step++){
             // sf+"v"+step this is a string
         getmazepathwithjumps(sr+step, sc, dr, dc, sf+"v"+step,count++);

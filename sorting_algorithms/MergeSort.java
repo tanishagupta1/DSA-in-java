@@ -6,7 +6,7 @@ class MergeSort {
         int n2 = h - mid;
         int[] L = new int[n1];
         int[] R = new int[n2];
-        // Coypying the elements of arr to the two arrays which are left and right from
+        // Copying the elements of arr to the two arrays which are left and right from
         // mid
         for (int i = 0; i < n1; i++) {
             L[i] = arr[i+l];
