@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class min_costpath {
+//in a grid we need to reach a point b from point a adding all the numbers in the way and reukt the minimum cost
     static int minPathSum(int[][] grid) {
         int[][] dp = new int[grid.length][grid[0].length];
 
@@ -19,6 +20,7 @@ public class min_costpath {
                 else if (j == dp[0].length - 1) {
                     dp[i][j] = dp[i + 1][j] + grid[i][j];
                 } else {
+                    //minimum from succeeding row or column 
                     dp[i][j] = (Math.min(dp[i + 1][j], dp[i][j + 1]) + grid[i][j]);
                 }
 
@@ -28,6 +30,7 @@ public class min_costpath {
     }
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
+        
         int m=sc.nextInt();
         int n=sc.nextInt();
 
@@ -40,6 +43,7 @@ public class min_costpath {
         }
         int ans=minPathSum(grid);
         System.out.println(ans);
+        sc.close();
     }
 
 }

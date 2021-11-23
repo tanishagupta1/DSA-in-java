@@ -27,7 +27,8 @@
     "java.project.sourcePaths": [
         "sorting_algorithms",
         "recursion",
+        "Stacks and Queues",
         "LinkedList",
-        "Stacks and Queues"
+        "DP"
     ]
 }
