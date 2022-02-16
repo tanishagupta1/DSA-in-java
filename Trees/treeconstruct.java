@@ -1,4 +1,6 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class treeconstruct{
@@ -45,7 +47,7 @@ public class treeconstruct{
     //height of tree
     static int height(Node node){
         int ht= -1;
-        //intializ ht as 0 when considered hright in terms of nodes 
+        //intialize ht as 0 when considered height in terms of nodes 
         // intialize with -1 when calculated in terms of  edges
         for(Node child:node.children){
             int ch=height(child);
@@ -53,6 +55,92 @@ public class treeconstruct{
         }
         ht+=1;
         return ht;
+    }
+    //traversal of the tree
+    static void traversal(Node node){
+        System.out.println("Node pre "+node.data);
+        for (Node child : node.children) {
+            System.out.println("Edge pre "+node.data+" - "+child.data);
+            traversal(child);
+            System.out.println("Edge post "+node.data);
+        }
+        System.out.println("Node post "+node.data);
+    }
+    //level order traversal
+    static void levelOrdertraversal(Node node){
+        Queue<Node> q=new ArrayDeque<>();
+        q.add(node);
+        while(q.size()>0){
+            node= q.remove();
+            System.out.print(node.data+" ");
+            for (Node child : node.children) {
+                q.add(child);
+            }
+        }
+    }
+    //level order traversal linewise
+    static void levelOrderlinewise(Node node){
+        Queue<Node> pq=new ArrayDeque<>();
+        pq.add(node);
+        Queue<Node> cq=new ArrayDeque<>();
+        while (pq.size()>0) {
+            node = pq.remove();
+            System.out.print(node.data+" ");
+        
+            for(Node child:node.children){
+              cq.add(child);
+            //   System.out.print(child.data);
+            }
+        if(pq.size()==0){
+            pq=cq;
+            cq=new ArrayDeque<>();
+            System.out.println();
+        }
+    }
+    }
+    //level Order zig zag
+    static void levelzigzag(Node node){
+        Stack<Node> ps=new Stack<>();
+        Stack<Node> cs=new Stack<>();
+        int level=1;
+        ps.push(node);
+        while (ps.size()>0) {
+            node = ps.pop();
+            System.out.print(node.data+" ");
+            if(level%2==0){
+                for(int i=node.children.size()-1;i>=0;i--){
+                    Node child =node.children.get(i);
+                    cs.push(child);
+                }
+            }
+            else{
+                for(int i=0;i<node.children.size();i++){
+                    Node child = node.children.get(i);
+                    cs.push(child);
+                }
+            }
+            if(ps.size()==0){
+                ps=cs;
+                cs=new Stack<>();
+                level++;
+                System.out.println();
+            }
+        }
+
+    }
+    //remove the leaves
+    static void removeleaves(Node node){
+        // if we iterate the loop forward then we will miss out testiong few nodes
+        // iterate in pre order 
+        for(int i=node.children.size()-1;i>=0;i--){
+            Node child = node.children.get(i);
+            if(child.children.size()==0){
+                node.children.remove(child);
+            }
+        }
+        for(Node child:node.children){
+            removeleaves(child);
+        }
     }
     public static void main(String[] args) {
         Node root=null;
@@ -84,5 +172,22 @@ public class treeconstruct{
         //height
         int h=height(root);
         System.out.println(h);
+        //traverssal
+        traversal(root);
+        //level order traversal
+        System.out.println("Level order");
+        levelOrdertraversal(root);
+        //linewise
+        System.out.println("");
+        System.out.println("Linewise level order traversal");
+        levelOrderlinewise(root);
+        //zigzag level order
+        System.out.println("Linewise level order traversal zig zag");
+        levelzigzag(root);
+
+        //removes leaves
+        System.out.println("Removes leaves");
+        removeleaves(root);
+        display(root);
     }
 }
