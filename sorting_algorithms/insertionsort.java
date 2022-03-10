@@ -9,6 +9,7 @@ public class insertionsort {
     void insertion_sort(int []arr,int n){
         int key,j;
         //Loop for passes( i is denoting no of passes)
+        // starting i from 1 so that while shifting to left i doesn't get negative
         for (int i = 1; i <=n-1; i++) {
             key=arr[i];
             //Loop for each pass

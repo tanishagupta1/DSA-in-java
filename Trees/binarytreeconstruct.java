@@ -2,6 +2,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class binarytreeconstruct {
     //Node for Binary Tree
@@ -25,6 +26,7 @@ public class binarytreeconstruct {
             root = new Node(val, null, null);
         }
     }
+    //Recursive methods
     //Time  Complexity of preOrder is O(n) where n is the numbe of nodes Space complexity : O(n)
     static void preOrder(Node node){
         if(node==null){
@@ -51,6 +53,28 @@ public class binarytreeconstruct {
         postOrder(node.right);
         System.out.print(node.data+"-> ");
     }
+    //Iterative dfs methods
+    static List<Integer> iterativepreOrder(Node root){
+        if(root==null){
+            return new ArrayList<>();
+        }
+        Stack<Node> st= new Stack<>();
+        st.push(root);
+        List<Integer> ans = new ArrayList<>();
+        while (!st.isEmpty()) {
+            //although pre order means root left right we 
+            // will add right first and then left since Stack is a LIFO data structure
+            Node t = st.pop();
+            ans.add(t.data);
+            if(t.right!=null){
+             st.push(t.right);
+            }
+            if(t.left!=null){
+             st.push(t.left);
+            }
+        }
+        return ans;
+    }
     static List<List<Integer>> bfs(Node node){
         List<List<Integer>> ans =new ArrayList<>();
         if(node==null){
@@ -62,6 +86,7 @@ public class binarytreeconstruct {
         while(q.size()>0){
             List<Integer> temp =new ArrayList<>();
             int len= q.size();
+            //len denotes the number of nodes present in a level
             for(int i=0;i<len;i++){
                 Node t = q.remove();
                 temp.add(t.data);
@@ -101,5 +126,10 @@ public class binarytreeconstruct {
         System.out.println();
         List<List<Integer>>res= bfs(tree.root);
         System.out.println(res);
+        //iterative pre Order
+        System.out.println("Iterative PreOrder");
+        List<Integer> pre =iterativepreOrder(tree.root);
+        System.out.println(pre);
+
     }
 }
